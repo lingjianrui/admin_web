@@ -147,7 +147,6 @@ export default {
     if (this.couldPaste) {
       document.addEventListener('paste', this.pasteImg)
     }
-
     this.dropzone.on('success', file => {
       vm.$emit('dropzone-success', file, vm.dropzone.element)
     })
