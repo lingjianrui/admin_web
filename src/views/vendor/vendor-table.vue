@@ -35,11 +35,13 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
+      <!--
       <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
+    -->
       <el-table-column label="Name" width="110px" align="center">
         <template slot-scope="{row}">
           <span>{{ row.vendor_name }}</span>
@@ -126,6 +128,9 @@
         </el-form-item>
         <el-form-item label="详情" prop="description">
           <el-input v-model="temp.description" type="textarea" :rows="3" />
+        </el-form-item>
+        <el-form-item label="电话" prop="phone">
+          <el-input v-model="temp.phone" type="textarea" :rows="3" />
         </el-form-item>
 
         <!-- <el-form-item label="Type" prop="type">
@@ -237,7 +242,8 @@ export default {
       temp: {
         vendor_name: '',
         banner: '',
-        description: ''
+        description: '',
+        phone: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -309,7 +315,8 @@ export default {
       this.temp = {
         vendor_name: '',
         banner: '',
-        description: ''
+        description: '',
+        phone: ''
       }
     },
     handleCreate() {
