@@ -47,9 +47,9 @@
           <span>{{ row.vendor_name }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Banner" width="110px" align="center">
+      <el-table-column label="Description" width="110px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.banner }}</span>
+          <span>{{ row.description }}</span>
         </template>
       </el-table-column>
 
@@ -130,7 +130,16 @@
           <el-input v-model="temp.description" type="textarea" :rows="3" />
         </el-form-item>
         <el-form-item label="电话" prop="phone">
-          <el-input v-model="temp.phone" type="textarea" :rows="3" />
+          <el-input v-model="temp.phone" />
+        </el-form-item>
+        <el-form-item label="纬度" prop="latitude">
+          <el-input v-model="temp.latitude" />
+        </el-form-item>
+        <el-form-item label="经度" prop="longtitude">
+          <el-input v-model="temp.longtitude" />
+        </el-form-item>
+        <el-form-item label="720地址" prop="image720">
+          <el-input v-model="temp.image720" type="textarea" :rows="3" />
         </el-form-item>
 
         <!-- <el-form-item label="Type" prop="type">
@@ -243,7 +252,10 @@ export default {
         vendor_name: '',
         banner: '',
         description: '',
-        phone: ''
+        phone: '',
+        latitude: '',
+        longtitude: '',
+        image720: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -275,7 +287,6 @@ export default {
       fetchVendorList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
-
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
@@ -316,7 +327,10 @@ export default {
         vendor_name: '',
         banner: '',
         description: '',
-        phone: ''
+        phone: '',
+        latitude: '',
+        longtitude: '',
+        image720: ''
       }
     },
     handleCreate() {
@@ -349,7 +363,6 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
-      console.log(row)
       this.temp.timestamp = new Date(this.temp.timestamp)
       console.log(row['banner'])
       this.bannerImg = 'http://47.104.226.188:8009/upload/' + row['banner']
@@ -379,7 +392,7 @@ export default {
       })
     },
     handleDelete(row, index) {
-      deleteVendor(row.id).then(response => {
+      deleteVendor(row.ID).then(response => {
         this.$notify({
           title: 'Success',
           message: 'Delete Successfully',

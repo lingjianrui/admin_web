@@ -10,7 +10,7 @@ export function fetchVendorList(query) {
 }
 export function deleteVendor(id) {
   return request({
-    url: 'http://47.104.226.188:8009/api/v1/vendor?token=' + store.getters.token,
+    url: 'http://47.104.226.188:8009/api/v1/vendor?id=' + id + '&token=' + store.getters.token,
     method: 'delete',
     params: { id: id }
   })
